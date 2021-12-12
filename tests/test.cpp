@@ -1,5 +1,4 @@
 // Copyright 2021 Petrova Kseniya <ksyushki5@yandex.ru>
-
 #include <gtest/gtest.h>
 #include <shared_pointer.hpp>
 #include <stdexcept>
