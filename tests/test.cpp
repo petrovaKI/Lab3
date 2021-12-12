@@ -13,6 +13,7 @@ TEST(constructor_tests, parameters_constructor)
   int *p = new int(9);
   shared_pointer<int> pointer(p);
   EXPECT_EQ(p, pointer.get());
+  delete p;
 }
 TEST(constructor_tests, copy_constructor)
 {
@@ -21,6 +22,7 @@ TEST(constructor_tests, copy_constructor)
   shared_pointer<int> pointer2(pointer1);
   EXPECT_EQ(pointer1, pointer2);
   EXPECT_EQ(pointer1.use_count(), 2);
+  delete p;
 }
 TEST(constructor_tests, move_copy_tests)
 {
@@ -32,6 +34,7 @@ TEST(method_tests, get)
   int *p = new int(9);
   shared_pointer<int> pointer1(p);
   EXPECT_EQ(pointer1.get(), p);
+  delete p;
 }
 TEST(operator_tests, operator1)
 {
@@ -39,6 +42,7 @@ TEST(operator_tests, operator1)
   shared_pointer<int> pointer1(p);
   shared_pointer<int> pointer2 = pointer1;
   EXPECT_EQ(pointer1.get(), pointer2.get());
+  delete p;
 }
 TEST(operator_tests, operator2)
 {
@@ -46,12 +50,14 @@ TEST(operator_tests, operator2)
   shared_pointer<int> pointer1(p);
   bool p2 = pointer1;
   EXPECT_TRUE(p2);
+  delete p;
 }
 TEST(operator_tests, operator3)
 {
   int *p = new int(9);
   shared_pointer<int> pointer1(p);
   EXPECT_EQ(*pointer1, 9);
+  delete p;
 }
 TEST(methods_tests, reset)
 {
@@ -59,6 +65,7 @@ TEST(methods_tests, reset)
   shared_pointer<int> pointer1(p);
   pointer1.reset();
   EXPECT_EQ(pointer1.get(), nullptr);
+  delete p;
 }
 TEST(methods_tests, reset2)
 {
@@ -67,6 +74,8 @@ TEST(methods_tests, reset2)
   shared_pointer<int> pointer1(p1);
   pointer1.reset(p2);
   EXPECT_EQ(*(pointer1.get()), 10);
+  delete p1;
+  delete p2;
 }
 TEST(methods_tests, swap)
 {
@@ -77,10 +86,13 @@ TEST(methods_tests, swap)
   pointer1.swap(pointer2);
   EXPECT_EQ(pointer1.get(), p2);
   EXPECT_EQ(pointer2.get(), p1);
+  delete p1;
+  delete p2;
 }
 TEST(methods_tests, use_count)
 {
   int *p1 = new int(9);
   shared_pointer<int> pointer1(p1);
   EXPECT_EQ(pointer1.use_count(), 1);
+  delete p1;
 }
