@@ -67,16 +67,6 @@ TEST(methods_tests, reset)
   EXPECT_EQ(pointer1.get(), nullptr);
   delete p;
 }
-TEST(methods_tests, reset2)
-{
-  int *p1 = new int(9);
-  int *p2 = new int(10);
-  shared_pointer<int> pointer1(p1);
-  pointer1.reset(p2);
-  EXPECT_EQ(pointer1.get(), p2);
-  delete p1;
-  delete p2;
-}
 TEST(methods_tests, swap)
 {
   int *p1 = new int(9);
