@@ -73,7 +73,7 @@ TEST(methods_tests, reset2)
   int *p2 = new int(10);
   shared_pointer<int> pointer1(p1);
   pointer1.reset(p2);
-  EXPECT_EQ(*(pointer1.get()), 10);
+  EXPECT_EQ(pointer1.get(), p2);
   delete p1;
   delete p2;
 }
